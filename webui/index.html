@@ -7,74 +7,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <img src="./assets/logo.svg" alt="" class="logo" />
-      <div>
+  <main class="app-shell">
+    <section class="prompt-card">
+      <header class="prompt-header">
         <h1>East Tennessee Hub</h1>
-        <p class="tagline">Practical help, right when you need it.</p>
+        <p class="prompt-tagline">Get tailored help from the right myTN agent with a single prompt.</p>
+      </header>
+
+      <div class="prompt-meta">
+        <span id="apiStatus" class="status-chip status-chip--muted">Checking API…</span>
+        <span class="detected">Detected:&nbsp;<strong id="detectedLabel">Detecting…</strong> <span id="detectedCode" class="detected-code">—</span></span>
+        <span class="api-origin">API:&nbsp;<a href="#" id="apiOriginLabel">—</a></span>
       </div>
-    </div>
-    <div class="status">
-      <span id="apiStatus" class="badge badge--muted">Checking API…</span>
-    </div>
-  </header>
 
-  <main class="container">
-    <!-- Category selection card removed -->
-
-    <section class="card">
-      <h2>Describe your goal</h2>
       <label for="goalInput" class="visually-hidden">Describe your goal</label>
-      <textarea id="goalInput" rows="3" placeholder="e.g., 'Help a senior set up a Wi‑Fi printer'"></textarea>
+      <textarea id="goalInput" rows="5" placeholder="Explain what you need help with…"></textarea>
 
-      <div class="kv" style="margin-top:.6rem">
-        <dt>Detected category</dt>
-        <dd id="detectedLabel">Detecting…</dd>
-        <dt>Agent code</dt>
-        <dd id="detectedCode">—</dd>
-      </div>
-
-      <p class="hint">Tip: use plain language like “write a press release…”, “find seasonal crops…”, “plan a hike…”. We’ll pick the right helper.</p>
-
-      <div class="actions">
+      <div class="prompt-actions">
         <button id="runBtn" class="btn btn-primary">
           <span class="btn-label">Get help</span>
           <span class="spinner hidden" aria-hidden="true"></span>
         </button>
         <button id="clearBtn" class="btn btn-secondary">Clear</button>
       </div>
-    </section>
 
-    <section class="card">
-      <div class="card-header">
-        <h2>Result</h2>
-        <div class="card-tools">
-          <button id="toggleJson" class="btn btn-ghost" aria-pressed="false">Show JSON</button>
-        </div>
-      </div>
       <div id="result" class="result" aria-live="polite"></div>
-      <pre id="resultJson" class="result-json hidden" aria-live="polite"></pre>
-    </section>
-
-    <section class="card">
-      <div class="card-header">
-        <h2>Recent Action Receipts</h2>
-        <div class="card-tools">
-          <button id="refreshReceipts" class="btn btn-ghost">Refresh</button>
-          <button id="exportCsv" class="btn btn-ghost">Export CSV</button>
-        </div>
-      </div>
-      <div id="receipts" class="receipts"></div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <p>myTN • East Tennessee Hub &middot; <a href="#" id="apiOriginLabel">API origin</a></p>
-  </footer>
 
   <script src="./config.js"></script>
   <script src="./app.js"></script>
