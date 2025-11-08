@@ -96,33 +96,33 @@ function escapeHtml(s){
 function showResultPretty(resp){
   if(!resp){ result.textContent = "No response yet."; return; }
   const { success, summary, data, receipt } = resp;
-  let html = `<div class="kv">
+  let html = `<dl class="kv">
     <dt>Status</dt><dd>${success ? "✅ Success" : "❌ Failed"}</dd>
     <dt>Summary</dt><dd>${escapeHtml(summary || "")}</dd>
     <dt>Agent</dt><dd>${escapeHtml(receipt?.agent_label || detectedLabel.textContent)}</dd>
     <dt>Goal</dt><dd>${escapeHtml(receipt?.user_goal || goalInput.value)}</dd>
-  </div>`;
+  </dl>`;
 
   if(data){
     if(Array.isArray(data.checklist)){
-      html += `<h3>Checklist</h3><ul class="clean">${data.checklist.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+      html += `<h3>Checklist</h3><ul class="clean">${data.checklist.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
     }
     if(data.pitch){
       html += `<h3>Sales Pitch</h3><div><strong>${escapeHtml(data.pitch.headline || "")}</strong></div>${
-        Array.isArray(data.pitch.value_props) ? `<ul class="clean">${data.pitch.value_props.map(p=>`<li>${escapeHtml(p)}`).join("")}</ul>` : ""
+        Array.isArray(data.pitch.value_props) ? `<ul class="clean">${data.pitch.value_props.map(p=>`<li>${escapeHtml(p)}</li>`).join("")}</ul>` : ""
       }${data.pitch.cta ? `<div><em>Call to action:</em> ${escapeHtml(data.pitch.cta)}</div>` : ""}`;
     }
     if(data.press_release){
       const pr=data.press_release;
       html += `<h3>Press Release</h3><div><strong>${escapeHtml(pr.title || "Community Update")}</strong></div><p>${escapeHtml(pr.lead || "")}</p>${
-        Array.isArray(pr.bullet_points) ? `<ul class="clean">${pr.bullet_points.map(b=>`<li>${escapeHtml(b)}`).join("")}</ul>` : ""
+        Array.isArray(pr.bullet_points) ? `<ul class="clean">${pr.bullet_points.map(b=>`<li>${escapeHtml(b)}</li>`).join("")}</ul>` : ""
       }`;
     }
     if(data.plan){
       const p=data.plan;
       html += `<h3>Plan</h3>`;
       if(Array.isArray(p.crop_rotation)){
-        html += `<div><strong>Crop rotation:</strong></div><ul class="clean">${p.crop_rotation.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Crop rotation:</strong></div><ul class="clean">${p.crop_rotation.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(p.soil_test){ html += `<div><strong>Soil test:</strong> ${escapeHtml(p.soil_test)}</div>`; }
       if(p.goal_note){ html += `<div><strong>Note:</strong> ${escapeHtml(p.goal_note)}</div>`; }
@@ -131,10 +131,10 @@ function showResultPretty(resp){
       const g=data.guidance;
       html += `<h3>Guidance</h3>`;
       if(Array.isArray(g.safety)){
-        html += `<div><strong>Safety:</strong></div><ul class="clean">${g.safety.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Safety:</strong></div><ul class="clean">${g.safety.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(Array.isArray(g.contacts)){
-        html += `<div><strong>Contacts:</strong></div><ul class="clean">${g.contacts.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Contacts:</strong></div><ul class="clean">${g.contacts.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(g.goal_note){ html += `<div><strong>Note:</strong> ${escapeHtml(g.goal_note)}</div>`; }
     }
@@ -143,7 +143,7 @@ function showResultPretty(resp){
       html += `<h3>Announcements</h3>`;
       if(o.announcement){ html += `<div><strong>${escapeHtml(o.announcement)}</strong></div>`; }
       if(Array.isArray(o.schedule)){
-        html += `<div><strong>Schedule:</strong></div><ul class="clean">${o.schedule.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Schedule:</strong></div><ul class="clean">${o.schedule.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(o.goal_note){ html += `<div><strong>Note:</strong> ${escapeHtml(o.goal_note)}</div>`; }
     }
@@ -154,10 +154,10 @@ function showResultPretty(resp){
       const it=data.itinerary;
       html += `<h3>Itinerary</h3>`;
       if(Array.isArray(it.half_day)){
-        html += `<div><strong>Half-day plan:</strong></div><ul class="clean">${it.half_day.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Half-day plan:</strong></div><ul class="clean">${it.half_day.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(Array.isArray(it.gear)){
-        html += `<div><strong>Gear:</strong></div><ul class="clean">${it.gear.map(x=>`<li>${escapeHtml(x)}`).join("")}</ul>`;
+        html += `<div><strong>Gear:</strong></div><ul class="clean">${it.gear.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
       }
       if(it.goal_note){ html += `<div><strong>Note:</strong> ${escapeHtml(it.goal_note)}</div>`; }
     }
